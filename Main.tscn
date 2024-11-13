@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://i31dvstbcm6x"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_s4nt6"]
+[ext_resource type="PackedScene" uid="uid://ckge34ku8s26r" path="res://Players.tscn" id="2_3qdri"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_s4nt6")
+
+[node name="BallTimer" type="Timer" parent="."]
+
+[node name="LeftPaddleStart" type="Marker2D" parent="."]
+
+[node name="RightPaddleStart" type="Marker2D" parent="."]
+
+[node name="BallStart" type="Marker2D" parent="."]
+
+[node name="Players" parent="." instance=ExtResource("2_3qdri")]
