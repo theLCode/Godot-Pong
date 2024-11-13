@@ -12,10 +12,10 @@ ballScene = ExtResource("4_qqaak")
 [node name="BallTimer" type="Timer" parent="."]
 
 [node name="LeftPaddleStart" type="Marker2D" parent="."]
-position = Vector2(180, 360)
+position = Vector2(130, 360)
 
 [node name="RightPaddleStart" type="Marker2D" parent="."]
-position = Vector2(900, 360)
+position = Vector2(950, 360)
 
 [node name="BallStart" type="Marker2D" parent="."]
 position = Vector2(540, 360)

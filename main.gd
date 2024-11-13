@@ -10,7 +10,8 @@ func _ready() -> void:
 	newGame()
 
 func _process(delta: float) -> void:
-	pass
+	hasScored()
+	print(leftScore, rightScore)
 
 # Called whenever a new ball needs to get served (when a ball leaves the screen)
 func newServe():
@@ -29,6 +30,15 @@ func newBallVel(absX):
 	ball.ballSpeed += 50
 	ball.linear_velocity = ball.randLinearVel()
 	ball.linear_velocity.x = absX
+
+func hasScored():
+	if !(ball == null):
+		if ball.position.x < $LeftPlayer.position.x - 32:
+			rightScore += 1
+			ball.queue_free()
+		elif ball.position.x > $RightPlayer.position.x + 32:
+			leftScore += 1
+			ball.queue_free()
 
 func _on_leftHit() -> void:
 	newBallVel(abs(ball.linear_velocity.x))

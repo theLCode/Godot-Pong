@@ -6,3 +6,4 @@ res://RightPlayer.tscn
 res://main.gd
 res://left_paddle.gd
 res://right_paddle.gd
+res://HUD.tscn

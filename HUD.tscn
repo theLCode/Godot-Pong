@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy14jyhfija6i"]
+
+[ext_resource type="FontFile" uid="uid://bygyk60gcue2d" path="res://Ubuntu-Regular.ttf" id="1_fu5pc"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="LeftScore" type="Label" parent="."]
+offset_left = 180.0
+offset_top = 5.0
+offset_right = 220.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("1_fu5pc")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="RightScore" type="Label" parent="."]
+offset_left = 900.0
+offset_top = 5.0
+offset_right = 940.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("1_fu5pc")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Message" type="Label" parent="."]
+offset_left = 291.0
+offset_top = 113.0
+offset_right = 722.0
+offset_bottom = 228.0
+theme_override_fonts/font = ExtResource("1_fu5pc")
+
+[node name="StartButton" type="Label" parent="."]
+offset_left = 477.0
+offset_top = 331.0
+offset_right = 621.0
+offset_bottom = 404.0
+theme_override_fonts/font = ExtResource("1_fu5pc")
+theme_override_font_sizes/font_size = 64
+text = "Start"
+horizontal_alignment = 1
+vertical_alignment = 1
