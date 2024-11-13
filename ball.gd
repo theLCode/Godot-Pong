@@ -10,10 +10,7 @@ func _ready() -> void:
 	print(screenSize.x)
 	print(screenSize.y)
 	position = (Vector2(screenSize.x / 2, screenSize.y / 2))
-	var randDir = randf() * TAU
-	var dir = Vector2(cos(randDir), sin(randDir))
-	linear_velocity = dir * ballSpeed
-
+	linear_velocity = createRandVectValue() * ballSpeed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,3 +19,7 @@ func _process(delta: float) -> void:
 	elif global_position.y >= screenSize.y - screenMargin:
 		linear_velocity.y = -abs(linear_velocity.y)
 		
+func createRandVectValue():
+	return Vector2(cos(randf() * TAU), sin(randf() * TAU))
+
+	

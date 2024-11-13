@@ -1,2 +1,6 @@
 res://Main.tscn
 res://Players.tscn
+res://main.gd
+res://ball.gd
+res://right_paddle.gd
+res://left_paddle.gd
