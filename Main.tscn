@@ -1,17 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://i31dvstbcm6x"]
+[gd_scene load_steps=5 format=3 uid="uid://i31dvstbcm6x"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_s4nt6"]
-[ext_resource type="PackedScene" uid="uid://ckge34ku8s26r" path="res://Players.tscn" id="2_3qdri"]
+[ext_resource type="PackedScene" uid="uid://ckge34ku8s26r" path="res://LeftPlayer.tscn" id="2_3qdri"]
+[ext_resource type="PackedScene" uid="uid://bh1cjo7aollo6" path="res://RightPlayer.tscn" id="3_8g288"]
+[ext_resource type="PackedScene" uid="uid://dqtf4un5yp6pe" path="res://Ball.tscn" id="4_qqaak"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_s4nt6")
+ballScene = ExtResource("4_qqaak")
 
 [node name="BallTimer" type="Timer" parent="."]
 
 [node name="LeftPaddleStart" type="Marker2D" parent="."]
+position = Vector2(180, 360)
 
 [node name="RightPaddleStart" type="Marker2D" parent="."]
+position = Vector2(900, 360)
 
 [node name="BallStart" type="Marker2D" parent="."]
+position = Vector2(540, 360)
 
-[node name="Players" parent="." instance=ExtResource("2_3qdri")]
+[node name="LeftPlayer" parent="." instance=ExtResource("2_3qdri")]
+
+[node name="RightPlayer" parent="." instance=ExtResource("3_8g288")]
+
+[connection signal="leftHit" from="LeftPlayer" to="." method="_on_leftHit"]
+[connection signal="rightHit" from="RightPlayer" to="." method="_on_rightHit"]

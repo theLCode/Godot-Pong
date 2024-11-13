@@ -1,8 +1,7 @@
 extends RigidBody2D
-@export var ballSpeed = 500
+@export var ballSpeed = 800
 var screenSize
-var screenMargin = 32.0
-
+var screenMargin = 28.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,7 +9,7 @@ func _ready() -> void:
 	print(screenSize.x)
 	print(screenSize.y)
 	position = (Vector2(screenSize.x / 2, screenSize.y / 2))
-	linear_velocity = createRandVectValue() * ballSpeed
+	linear_velocity = randLinearVel()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,8 +17,9 @@ func _process(delta: float) -> void:
 		linear_velocity.y = abs(linear_velocity.y)
 	elif global_position.y >= screenSize.y - screenMargin:
 		linear_velocity.y = -abs(linear_velocity.y)
-		
+
 func createRandVectValue():
 	return Vector2(cos(randf() * TAU), sin(randf() * TAU))
 
-	
+func randLinearVel():
+	return createRandVectValue() * ballSpeed

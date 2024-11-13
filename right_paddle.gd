@@ -3,11 +3,10 @@ extends Area2D
 var screenSize
 signal rightHit
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screenSize = get_viewport_rect().size
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Processes the movement for right paddle, goes up or down
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("rightPaddleDown"):
@@ -24,7 +23,6 @@ func _process(delta: float) -> void:
 func start(pos):
 	position = pos
 	show()
-	
 
 func _on_body_entered(body: Node2D) -> void:
 	rightHit.emit()

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh1cjo7aollo6"]
+
+[ext_resource type="Script" path="res://right_paddle.gd" id="1_3pemu"]
+[ext_resource type="Texture2D" uid="uid://baso4g1tfawwp" path="res://pinkPaddle.png" id="2_nnogh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tixhe"]
+size = Vector2(8, 96)
+
+[node name="RightPaddle" type="Area2D"]
+script = ExtResource("1_3pemu")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_nnogh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_tixhe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
