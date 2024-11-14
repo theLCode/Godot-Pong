@@ -23,10 +23,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !gameActive and Input.is_action_pressed("spaceBar"):
 		newGame()
-	#need to figure out timer
-	#else:
-		#messageLabel.hide()
-		#startButton.show()
 		
 	if gameActive:
 		hasScored()
@@ -37,6 +33,8 @@ func newGame():
 	gameActive = true
 	leftScore = 0
 	rightScore = 0
+	leftScoreLabel.text = str(leftScore)
+	rightScoreLabel.text = str(rightScore)
 	$LeftPlayer.start($LeftPaddleStart.position)
 	$RightPlayer.start($RightPaddleStart.position)
 	leftScoreLabel.show()
@@ -59,6 +57,7 @@ func newBallVel(absX):
 func hasScored():
 	#if ball is still in the game but behind paddles
 	#	update score based off of position
+	print(leftScore, rightScore)
 	if !(ball == null):
 		if ball.position.x < $LeftPlayer.position.x - 32:
 			updateScore("right")
@@ -66,18 +65,34 @@ func hasScored():
 			updateScore("left")
 
 func updateScore(paddle : String):
+	print(leftScore, rightScore)
 	if paddle == "left":
 		leftScore += 1
-		leftScoreLabel.text = str(leftScore)
 	else:
 		rightScore += 1
-		rightScoreLabel.text = str(rightScore)
+	
+	if leftScore > 5:
+		leftScore = 5
+	elif rightScore > 5:
+		rightScore = 5
+		
+	leftScoreLabel.text = str(leftScore)
+	rightScoreLabel.text = str(rightScore)
+		
+	print(leftScore, rightScore)
 	if leftScore == MAXSCORE or rightScore == MAXSCORE:
 		messageLabel.text = "Blue Paddle Wins!" if leftScore > rightScore else "Pink Paddle Wins!"
 		messageLabel.show()
+		await get_tree().create_timer(2.0).timeout
 		startButton.show()
+		leftScoreLabel.hide()
+		rightScoreLabel.hide()
+		messageLabel.hide()
+		$LeftPlayer.hide()
+		$RightPlayer.hide()
 		gameActive = false
-	ball.queue_free()
+	if !(ball == null):
+		ball.queue_free()
 
 #change direction of the ball based off of which paddle hit ball
 func _on_leftHit() -> void:
