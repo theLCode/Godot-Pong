@@ -1,9 +1,7 @@
 res://Main.tscn
-res://ball.gd
 res://LeftPlayer.tscn
-res://Ball.tscn
 res://RightPlayer.tscn
-res://main.gd
-res://left_paddle.gd
-res://right_paddle.gd
+res://Ball.tscn
 res://HUD.tscn
+res://main.gd
+res://ball.gd

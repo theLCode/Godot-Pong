@@ -6,8 +6,6 @@ var screenMargin = 28.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	screenSize = get_viewport_rect().size
-	print(screenSize.x)
-	print(screenSize.y)
 	position = (Vector2(screenSize.x / 2, screenSize.y / 2))
 	linear_velocity = randLinearVel()
 

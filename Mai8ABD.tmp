@@ -10,7 +10,7 @@
 script = ExtResource("1_s4nt6")
 ballScene = ExtResource("4_qqaak")
 
-[node name="MessageTimer" type="Timer" parent="."]
+[node name="BallTimer" type="Timer" parent="."]
 
 [node name="LeftPaddleStart" type="Marker2D" parent="."]
 position = Vector2(130, 360)
