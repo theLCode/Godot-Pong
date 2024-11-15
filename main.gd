@@ -1,5 +1,7 @@
 extends Node
 const MAXSCORE = 5
+const PADDLEHEIGHT = 32
+const MAXBOUNCEANGLE = 75
 @export var ballScene : PackedScene
 var gameActive
 var leftScore
@@ -49,20 +51,30 @@ func newServe():
 		ball = ballScene.instantiate()
 		add_child(ball)
 
+func ballHit(paddle : Area2D, interceptY : int):
+	var relativeInterceptY = (paddle.position.y + (PADDLEHEIGHT/2)) - interceptY
+	var normalizedInterceptY = relativeInterceptY / (PADDLEHEIGHT/2)
+	var bounceAngle = normalizedInterceptY * MAXBOUNCEANGLE
+	#print(paddle.name)
+	if paddle.name == "LeftPlayer":
+		ball.linear_velocity.x = -(ball.ballSpeed * cos(bounceAngle))
+	else:
+		ball.linear_velocity.x = ball.ballSpeed * cos(bounceAngle)
+	ball.linear_velocity.y = ball.ballSpeed * sin(bounceAngle)
+
 func newBallVel(absX):
-	ball.ballSpeed += 50
 	ball.linear_velocity = ball.randLinearVel()
 	ball.linear_velocity.x = absX
 
 func hasScored():
 	#if ball is still in the game but behind paddles
 	#	update score based off of position
-	print(leftScore, rightScore)
 	if !(ball == null):
 		if ball.position.x < $LeftPlayer.position.x - 32:
 			updateScore("right")
 		elif ball.position.x > $RightPlayer.position.x + 32:
 			updateScore("left")
+			ballHit($RightPlayer, ball.position.y)
 
 func updateScore(paddle : String):
 	print(leftScore, rightScore)
@@ -96,6 +108,8 @@ func updateScore(paddle : String):
 
 #change direction of the ball based off of which paddle hit ball
 func _on_leftHit() -> void:
-	newBallVel(abs(ball.linear_velocity.x))
+	ballHit($LeftPlayer, ball.position.y)
+	#newBallVel(abs(ball.linear_velocity.x))
 func _on_rightHit() -> void:
-	newBallVel(-abs(ball.linear_velocity.x))
+	ballHit($RightPlayer, ball.position.y)
+	#newBallVel(-abs(ball.linear_velocity.x))
